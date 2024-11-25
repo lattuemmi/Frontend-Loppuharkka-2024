@@ -1,35 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import CourseItem from './CourseItem.jsx';
 
 function App() {
-  const [count, setCount] = useState(0)
+  let courses = [
+    {
+      id: 0,
+      name: 'versionhallinta',
+    },
+    {
+      id: 1,
+      name: 'java',
+    },
+    {
+      id: 2,
+      name: 'ruotsi',
+    },
+    {
+      id: 3,
+      name: 'ohjelmointi 1',
+    },
+  ];
 
   return (
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <button>Create notes for class</button>
+        <button>List notes</button>
+        <button>Add Courses</button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+
+      <ul>
+        {courses.map((kurssi, i) => {
+          return <CourseItem key={kurssi.id} id={kurssi.id} name={kurssi.name} />;
+        })}
+      </ul>
+
+      <div>
+        <pre>{JSON.stringify(courses, null, 2)}</pre>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
+      <div>
+        <p>Päivittyykö tää?</p>
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
