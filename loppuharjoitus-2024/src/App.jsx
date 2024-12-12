@@ -36,11 +36,62 @@ function App() {
       </ul>
 
       <div>
-        <pre>{JSON.stringify(courses, null, 2)}</pre>
+        <p>Add notes sivu</p>
+      </div>
+
+      {/*Tästä alkaa Add notes for course view sivu */}
+      <div>
+        <p>Add new notes for course</p>
+      </div>
+      
+      <p>Course:</p>
+
+      <div>
+        <select name="kurssi" id="">
+          <option value="kurssi1">Versionhallinta</option>
+          <option value="kurssi2">Java</option>
+          <option value="kurssi3">Ruotsi</option>
+          <option value="kurssi4">Ohjelmointi1</option>
+        </select>
+      </div>
+      
+      <div>
+        <textarea name="" id=""></textarea>
       </div>
 
       <div>
-        <p>Päivittyykö tää?</p>
+        <button>Save</button>
+        <button>Back</button>
+      </div>
+
+      <div className="muistiinpano laatikko">Tän pitäis sit olla tallennettu muistiinpano</div>
+      <div className="muistiinpano laatikko">Tän pitäis sit olla tallennettu muistiinpano</div>
+      
+      {/* Tästä alkaa list view - all notes ( pystyy myös suodattamaan kurssin mukaan  )*/}
+    
+      <p>Course:</p>
+
+      <div>
+        <select name="kurssi" id="">
+          <option value="kurssi1">Versionhallinta</option>
+          <option value="kurssi2">Java</option>
+          <option value="kurssi3">Ruotsi</option>
+          <option value="kurssi4">Ohjelmointi1</option>
+        </select>
+      </div>
+
+      <div className="muistiinpano laatikko">Tän pitäis sit olla tallennettu muistiinpano</div>
+      <div className="muistiinpano laatikko">Tän pitäis sit olla tallennettu muistiinpano</div>
+      <div className="muistiinpano laatikko">Tän pitäis sit olla tallennettu muistiinpano</div>
+    
+      {/* Tästä alkaa Add courses sivu */}
+
+      <div>
+        <input type="text" />
+        <button>Add course</button>
+
+        <p>Lisäämisen jälkeen laitetaan joku varmistus siitä että kurssi on saatu lisättyä
+        </p>
       </div>
     </>
   );
