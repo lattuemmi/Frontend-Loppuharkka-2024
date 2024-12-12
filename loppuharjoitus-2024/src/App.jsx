@@ -1,7 +1,15 @@
 import { useState } from 'react';
 import CourseItem from './CourseItem.jsx';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
+import AddNotes from "./AddNotes.jsx"
+import AddCourse from './AddCourse.jsx';
+import ViewNotes from './ViewNotes.jsx';
+import HomePage from "./HomePage.jsx";
 
 function App() {
+
+
   let courses = [
     {
       id: 0,
@@ -22,78 +30,17 @@ function App() {
   ];
 
   return (
-    <>
-      <div>
-        <button>Create notes for class</button>
-        <button>List notes</button>
-        <button>Add Courses</button>
-      </div>
+    <Router>
+      <Routes>
+        {/* Kotisivun reitti */}
+        <Route path="/" element={<HomePage />} />
 
-      <ul>
-        {courses.map((kurssi, i) => {
-          return <CourseItem key={kurssi.id} id={kurssi.id} name={kurssi.name} />;
-        })}
-      </ul>
-
-      <div>
-        <p>Add notes sivu</p>
-      </div>
-
-      {/*Tästä alkaa Add notes for course view sivu */}
-      <div>
-        <p>Add new notes for course</p>
-      </div>
-      
-      <p>Course:</p>
-
-      <div>
-        <select name="kurssi" id="">
-          <option value="kurssi1">Versionhallinta</option>
-          <option value="kurssi2">Java</option>
-          <option value="kurssi3">Ruotsi</option>
-          <option value="kurssi4">Ohjelmointi1</option>
-        </select>
-      </div>
-      
-      <div>
-        <textarea name="" id=""></textarea>
-      </div>
-
-      <div>
-        <button>Save</button>
-        <button>Back</button>
-      </div>
-
-      <div className="muistiinpano laatikko">Tän pitäis sit olla tallennettu muistiinpano</div>
-      <div className="muistiinpano laatikko">Tän pitäis sit olla tallennettu muistiinpano</div>
-      
-      {/* Tästä alkaa list view - all notes ( pystyy myös suodattamaan kurssin mukaan  )*/}
-    
-      <p>Course:</p>
-
-      <div>
-        <select name="kurssi" id="">
-          <option value="kurssi1">Versionhallinta</option>
-          <option value="kurssi2">Java</option>
-          <option value="kurssi3">Ruotsi</option>
-          <option value="kurssi4">Ohjelmointi1</option>
-        </select>
-      </div>
-
-      <div className="muistiinpano laatikko">Tän pitäis sit olla tallennettu muistiinpano</div>
-      <div className="muistiinpano laatikko">Tän pitäis sit olla tallennettu muistiinpano</div>
-      <div className="muistiinpano laatikko">Tän pitäis sit olla tallennettu muistiinpano</div>
-    
-      {/* Tästä alkaa Add courses sivu */}
-
-      <div>
-        <input type="text" />
-        <button>Add course</button>
-
-        <p>Lisäämisen jälkeen laitetaan joku varmistus siitä että kurssi on saatu lisättyä
-        </p>
-      </div>
-    </>
+        {/* Muut reitit */}
+        <Route path="/add-notes" element={<AddNotes />} />
+        <Route path="/add-course" element={<AddCourse />} />
+        <Route path="/view-notes" element={<ViewNotes />} />
+      </Routes>
+    </Router>
   );
 }
 
