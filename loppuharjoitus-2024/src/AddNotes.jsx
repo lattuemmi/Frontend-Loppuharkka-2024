@@ -1,8 +1,6 @@
 import React, {useEffect} from "react";
 
-import useCourseStore from "./store/useCourseStore";
 import BackButton from "./BackButton";
-import { useNavigate } from "react-router-dom";
 import useNoteStore from "./store/useNoteStore";
 
 

@@ -13,3 +13,8 @@ Asennus ja käynnistys ohje:
     - käytä komento " npm install zustand " konsoliin
     - asennuksen jälkeen ohjelma käynnistetään normaalisti
     ( Tarvitsemme Zustandin datan säilytystä varten )
+
+3. Asennetaan reactjs-popup
+    - käytä komento " npm install reactjs-popup "
+    - asennuksen jälkeen ohjelma käynnistetään normaalisti
+    ( Tarvitsemme reactjs-popup kirjastoa nopeaan ja helppoon pop uppiin)
