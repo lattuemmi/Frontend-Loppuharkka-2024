@@ -9,7 +9,6 @@ import HomePage from "./HomePage.jsx";
 
 function App() {
 
-
   let courses = [
     {
       id: 0,

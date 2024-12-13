@@ -1,6 +1,11 @@
+import BackButton from "./BackButton";
+
+
 function ViewNotes(){
     return(
     <>
+    <BackButton />
+
     <p>Course:</p>
 
     <div>

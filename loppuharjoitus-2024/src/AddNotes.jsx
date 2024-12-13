@@ -1,7 +1,12 @@
+import BackButton from "./BackButton";
+
+
 function AddNotes (){
     return(
     <>
-        <div>
+    <BackButton />
+
+      <div>
         <p>Add new notes for course</p>
       </div>
       

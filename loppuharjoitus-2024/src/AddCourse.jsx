@@ -1,6 +1,10 @@
+import BackButton from "./BackButton";
+
 function AddCourse(){
     return(
     <>
+    <BackButton />
+
     <div>
         <input type="text" />
         <button>Add course</button>
