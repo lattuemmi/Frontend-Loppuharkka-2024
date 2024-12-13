@@ -1,7 +1,20 @@
+import React, {useEffect} from "react";
+
+import useCourseStore from "./store/useCourseStore";
 import BackButton from "./BackButton";
+import { useNavigate } from "react-router-dom";
+import useNoteStore from "./store/useNoteStore";
 
 
 function AddNotes (){
+
+    const notes = useNoteStore((state) => state.notes);
+    const fetchNotes = useNoteStore((state) => state.fetchNotes);
+
+    useEffect(() => {
+      fetchNotes();
+    }, [fetchNotes]);
+
     return(
     <>
     <BackButton />
@@ -30,8 +43,16 @@ function AddNotes (){
         <button>Back</button>
       </div>
 
-      <div className="muistiinpano laatikko">Tän pitäis sit olla tallennettu muistiinpano</div>
-      <div className="muistiinpano laatikko">Tän pitäis sit olla tallennettu muistiinpano</div>    
+      <div>
+        <h2>Muistiinpanot</h2>
+
+        <ul>
+          {notes.map((notes, i) => (
+            <li key={i}>{notes.text}</li>
+          ))}
+        </ul>
+      </div>
+
     </>
     )
 }

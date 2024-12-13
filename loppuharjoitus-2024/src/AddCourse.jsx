@@ -1,6 +1,9 @@
+import CourseList from "./CourseList";
+
 import BackButton from "./BackButton";
 
 function AddCourse(){
+
     return(
     <>
     <BackButton />
@@ -9,9 +12,12 @@ function AddCourse(){
         <input type="text" />
         <button>Add course</button>
 
-        <p>Lisäämisen jälkeen laitetaan joku varmistus siitä että kurssi on saatu lisättyä
-        </p>
+        <p>Lisäämisen jälkeen laitetaan joku varmistus siitä että kurssi on saatu lisättyä</p>
+
     </div>
+
+    <CourseList />
+
     </>
     )
 }
