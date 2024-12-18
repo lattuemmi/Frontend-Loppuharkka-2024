@@ -1,58 +1,83 @@
-import React, {useEffect} from "react";
-
+import React, { useEffect, useState } from "react";
 import BackButton from "./BackButton";
 import useNoteStore from "./store/useNoteStore";
+import useCourseStore from "./store/useCourseStore";
+import NoteBox from "./NoteBox";
 
+function AddNotes() {
+  const notes = useNoteStore((state) => state.notes);
+  const fetchNotes = useNoteStore((state) => state.fetchNotes);
+  const addNote = useNoteStore((state) => state.addNote);
 
-function AddNotes (){
+  const courses = useCourseStore((state) => state.courses);
+  const fetchCourses = useCourseStore((state) => state.fetchCourses);
 
-    const notes = useNoteStore((state) => state.notes);
-    const fetchNotes = useNoteStore((state) => state.fetchNotes);
+  const [selectedCourse, setSelectedCourse] = useState("");
+  const [noteText, setNoteText] = useState("");
+  const [newNote, setNewNote] = useState(null); 
 
-    useEffect(() => {
-      fetchNotes();
-    }, [fetchNotes]);
+  useEffect(() => {
+    fetchNotes();
+    fetchCourses();
+  }, [fetchNotes, fetchCourses]);
 
-    return(
+  const handleSave = () => {
+    if (selectedCourse && noteText) {
+      const createdNote = {
+        course: { name: selectedCourse },
+        text: noteText,
+        timestamp: new Date().toISOString(),
+      };
+      addNote(createdNote); 
+      setNewNote(createdNote); 
+      setNoteText("");
+    }
+  };
+
+  return (
     <>
-    <BackButton />
+      <BackButton />
+      <p>Add new notes for course</p>
 
-      <div>
-        <p>Add new notes for course</p>
-      </div>
-      
       <p>Course:</p>
-
       <div>
-        <select name="kurssi" id="">
-          <option value="kurssi1">Versionhallinta</option>
-          <option value="kurssi2">Java</option>
-          <option value="kurssi3">Ruotsi</option>
-          <option value="kurssi4">Ohjelmointi1</option>
+        <select
+          name="kurssi"
+          id="courseDropdown"
+          value={selectedCourse}
+          onChange={(e) => setSelectedCourse(e.target.value)}
+        >
+          <option value="">Select a course</option>
+          {courses.map((course) => (
+            <option key={course.id} value={course.name}>
+              {course.name}
+            </option>
+          ))}
         </select>
       </div>
-      
+
       <div>
-        <textarea name="" id=""></textarea>
+        <textarea
+          name="noteText"
+          id="noteText"
+          value={noteText}
+          onChange={(e) => setNoteText(e.target.value)}
+        />
       </div>
 
       <div>
-        <button>Save</button>
+        <button onClick={handleSave}>Save</button>
         <button>Back</button>
       </div>
 
-      <div>
-        <h2>Muistiinpanot</h2>
-
-        <ul>
-          {notes.map((notes, i) => (
-            <li key={i}>{notes.text}</li>
-          ))}
-        </ul>
-      </div>
-
+      {newNote && (
+        <div>
+          <h3>New Note Added:</h3>
+          <NoteBox note={newNote} /> 
+        </div>
+      )}
     </>
-    )
+  );
 }
 
 export default AddNotes;
