@@ -1,66 +1,39 @@
 import { useEffect, useState } from "react";
-
 import BackButton from "./BackButton";
 import useNoteStore from "./store/useNoteStore";
 import useCourseStore from "./store/useCourseStore";
-import NoteBox from "./NoteBox";
-import CourseList from "./CourseList";
+import CourseSelector from "./CourseSelector";
+import NotesList from "./NotesList";
 
-function ViewNotes(){
+function ViewNotes() {
+  const notes = useNoteStore((state) => state.notes);
+  const fetchNotes = useNoteStore((state) => state.fetchNotes);
 
-    const notes = useNoteStore((state) => state.notes);
-    const fetchNotes = useNoteStore((state) => state.fetchNotes);
+  const courses = useCourseStore((state) => state.courses);
+  const fetchCourses = useCourseStore((state) => state.fetchCourses);
 
-    const courses = useCourseStore((state) => state.courses);
-    const fetchCourses = useCourseStore((state) => state.fetchCourses);
+  const [selectedCourse, setSelectedCourse] = useState("");
 
-    const [selectedCourse, setSelectedCourse] = useState("");
+  useEffect(() => {
+    fetchNotes();
+    fetchCourses();
+  }, [fetchNotes, fetchCourses]);
 
-    useEffect(() => {
-      fetchNotes();
-      fetchCourses();
-    }, [fetchNotes, fetchCourses]);
+  const filteredNotes = selectedCourse
+    ? notes.filter((note) => note.course.name === selectedCourse)
+    : notes;
 
-    const filteredNotes = selectedCourse
-        ? notes.filter((note) => note.course.name === selectedCourse)
-        : notes;
-
-    return(
+  return (
     <>
-    <BackButton />
-
-    <p>Course:</p>
-
-      <div>
-        <select 
-        name="kurssi" 
-        id="courseDropdown"
-        onChange={(e) => setSelectedCourse(e.target.value)}>
-          <option value="">All</option>
-          {courses.map((course) => (
-            <option key={course.id} value={course.name}>
-              {course.name}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div>
-        {filteredNotes.length > 0 ? (
-          <ul>
-            {filteredNotes.map((note) => (
-              <li key={note.id}>
-                <NoteBox note={note} />
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>No notes available for this course</p>
-        )}
-      </div>
-
+      <BackButton />
+      <CourseSelector 
+        courses={courses} 
+        selectedCourse={selectedCourse} 
+        onChange={setSelectedCourse} 
+      />
+      <NotesList notes={filteredNotes} />
     </>
-    )
+  );
 }
 
 export default ViewNotes;
