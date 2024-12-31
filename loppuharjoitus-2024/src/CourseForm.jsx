@@ -15,12 +15,13 @@ function CourseForm({ onAddCourse, courses }) {
   return (
     <div>
       <input
+        class="input-add"
         type="text"
         value={courseName}
         onChange={(e) => setCourseName(e.target.value)}
         placeholder="Enter course name"
       />
-      <button onClick={handleAddCourse}>Add course</button>
+      <button class="add-button" onClick={handleAddCourse}>Add course</button>
     </div>
   );
 }

@@ -14,7 +14,7 @@ function CourseList (){
 
     return(
         <div>
-            <h2>Kurssilista</h2>
+            <h2>Courselist</h2>
 
             <ul>
                 {courses.map((course, i) => (

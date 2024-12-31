@@ -4,6 +4,7 @@ function NoteInput({ noteText, onTextChange}){
     return(
         <div>
         <textarea
+          class="note-input"
           name="noteText"
           id="noteText"
           value={noteText}

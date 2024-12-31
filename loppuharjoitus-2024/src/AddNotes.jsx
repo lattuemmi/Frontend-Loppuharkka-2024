@@ -21,6 +21,10 @@ function AddNotes() {
   }, [fetchCourses]);
 
   const handleSave = () => {
+    if (!selectedCourse) {
+      alert(`Please select a course first!`);
+      return;
+    }
     if (selectedCourse && noteText) {
       const course = courses.find((c) => c.name === selectedCourse);
       if (course) {
@@ -40,7 +44,11 @@ function AddNotes() {
 
   return (
     <>
-      <BackButton />
+    <div class="container">
+    <BackButton />
+
+    <h5>Add new notes for course</h5>
+
       <CourseSelector
         courses={courses}
         selectedCourse={selectedCourse}
@@ -56,6 +64,7 @@ function AddNotes() {
         <button onClick={handleSave}>Save</button>
       </div>
       <NewNotesList notes={newNotes} />
+    </div>
     </>
   );
 }

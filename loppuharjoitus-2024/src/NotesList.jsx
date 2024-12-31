@@ -5,7 +5,7 @@ function NotesList({ notes }) {
   return (
     <div>
       {notes.length > 0 ? (
-        <ul>
+        <ul class="notes-list">
           {notes.map((note) => (
             <li key={note.id}>
               <NoteBox note={note} />

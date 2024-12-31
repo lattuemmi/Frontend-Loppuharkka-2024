@@ -7,19 +7,19 @@ function NoteBox({note}){
     const removeNote = useNoteStore((state) => state.removeNote);
 
     const handleDelete = () => {
-        if ( window.confirm("Are you sure you want to delete this ntoe?")){
+        if ( window.confirm("Are you sure you want to delete this note?")){
             removeNote(note.id);
         }
     }
 
     return(
 
-        <div>
+        <div className="note-box">
             <h3>{note.course.name}</h3>
             <p>{note.text}</p>
             <small>{note.timestamp}</small>
-            <button onClick={handleDelete} style={{ marginLeft: "10px", color: "red" }}>
-                Delete
+            <button class="delete-button" onClick={handleDelete}>
+                🗑️
             </button>
         </div>
     )

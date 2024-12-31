@@ -2,7 +2,7 @@
 
 function Header() {
     return(
-    <div>
+    <div class="header">
         <h1>NotesApp</h1>
     </div>
     )

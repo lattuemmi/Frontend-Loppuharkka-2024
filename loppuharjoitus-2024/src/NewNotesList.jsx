@@ -6,8 +6,7 @@ function NewNotesList({ notes }) {
     <div>
       {notes.length > 0 && (
         <>
-          <h3>New Notes Added:</h3>
-          <ul>
+          <ul class="new-notes-list">
             {notes.map((note) => (
               <li key={note.id}>
                 <NewNoteBox note={note} />

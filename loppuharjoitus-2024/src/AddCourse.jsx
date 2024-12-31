@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import BackButton from "./BackButton";
 import useCourseStore from "./store/useCourseStore";
 import CourseForm from "./CourseForm";
-import CourseList from "./CourseList";
+
 
 function AddCourse() {
   const addCourse = useCourseStore((state) => state.addCourse);
@@ -10,9 +10,10 @@ function AddCourse() {
 
   return (
     <>
-      <BackButton />
-      <CourseForm onAddCourse={addCourse} courses={courses} />
-      <CourseList />
+    <div>
+        <BackButton />
+        <CourseForm onAddCourse={addCourse} courses={courses} />
+    </div>
     </>
   );
 }

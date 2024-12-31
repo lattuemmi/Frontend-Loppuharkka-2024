@@ -25,13 +25,19 @@ function ViewNotes() {
 
   return (
     <>
-      <BackButton />
-      <CourseSelector 
-        courses={courses} 
-        selectedCourse={selectedCourse} 
-        onChange={setSelectedCourse} 
-      />
-      <NotesList notes={filteredNotes} />
+    <div class="container">
+      <div>
+          <BackButton />
+          <CourseSelector 
+            courses={courses} 
+            selectedCourse={selectedCourse} 
+            onChange={setSelectedCourse} 
+          />
+      </div>
+      <div>
+        <NotesList notes={filteredNotes} />
+      </div>
+    </div>
     </>
   );
 }

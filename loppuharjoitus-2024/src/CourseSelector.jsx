@@ -2,9 +2,10 @@ import React from "react";
 
 function CourseSelector({courses, selectedCourse, onChange}){
   return(
-    <div>
-        <p>Course:</p>
-        <select 
+    <div class="course-selector">
+        <p class="selector-text">Course:</p>
+        <select
+            class="dropdown"
             name="kurssi" 
             id="courseDropdown" 
             value={selectedCourse}

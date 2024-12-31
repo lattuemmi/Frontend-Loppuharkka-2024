@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function BackButton(){
     return(
-        <li><Link to="/">Back</Link></li>
+        <li class="backbutton"><Link to="/">⬅️Back</Link></li>
     )
 }
 

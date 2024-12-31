@@ -1,6 +1,6 @@
 function NewNoteBox({note}){
 return(
-    <div>
+    <div class="new-notebox">
         <p>{note.text}</p>
     </div>
 )
