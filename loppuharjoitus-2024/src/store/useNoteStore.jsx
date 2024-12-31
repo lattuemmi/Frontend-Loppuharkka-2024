@@ -7,13 +7,21 @@ const useNoteStore = create((set) => ({
   fetchNotes: async () => {
     const response = await fetch(notesURL);
     const data = await response.json();
-    set({ notes: data });
+    set((state) => ({
+      notes: [...state.notes, ...data.filter(apiNote => !state.notes.some(note => note.id === apiNote.id))],
+    }));
   },
   addNote: (newNote) => {
     set((state) => ({
       notes: [newNote, ...state.notes],
     }));
   },
+  removeNote: (id) => {
+    set((state) => ({
+      notes: state.notes.filter((note) => note.id !== id),
+    }));
+  },
+
 }));
 
 export default useNoteStore;

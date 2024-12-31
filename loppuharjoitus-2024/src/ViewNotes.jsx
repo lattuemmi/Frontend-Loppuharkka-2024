@@ -4,6 +4,7 @@ import BackButton from "./BackButton";
 import useNoteStore from "./store/useNoteStore";
 import useCourseStore from "./store/useCourseStore";
 import NoteBox from "./NoteBox";
+import CourseList from "./CourseList";
 
 function ViewNotes(){
 
@@ -46,12 +47,17 @@ function ViewNotes(){
 
       <div>
         {filteredNotes.length > 0 ? (
-            filteredNotes.map((note) => <NoteBox key={note.id} note={note} />)
+          <ul>
+            {filteredNotes.map((note) => (
+              <li key={note.id}>
+                <NoteBox note={note} />
+              </li>
+            ))}
+          </ul>
         ) : (
-            <p>No notes available for this course</p>
+          <p>No notes available for this course</p>
         )}
       </div>
-
 
     </>
     )

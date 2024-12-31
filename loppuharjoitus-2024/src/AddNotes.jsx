@@ -14,7 +14,7 @@ function AddNotes() {
 
   const [selectedCourse, setSelectedCourse] = useState("");
   const [noteText, setNoteText] = useState("");
-  const [newNote, setNewNote] = useState(null); 
+  const [newNotes, setNewNotes] = useState([]);
 
   useEffect(() => {
     fetchNotes();
@@ -23,14 +23,18 @@ function AddNotes() {
 
   const handleSave = () => {
     if (selectedCourse && noteText) {
-      const createdNote = {
-        course: { name: selectedCourse },
-        text: noteText,
-        timestamp: new Date().toISOString(),
-      };
-      addNote(createdNote); 
-      setNewNote(createdNote); 
-      setNoteText("");
+      const course = courses.find((c) => c.name === selectedCourse);
+      if (course) {
+        const createdNote = {
+          id: course.id,
+          course: { name: course.name },
+          text: noteText,
+          timestamp: new Date().toISOString(),
+        };
+        addNote(createdNote);
+        setNewNotes((prevNotes) => [createdNote, ...prevNotes]);
+        setNoteText("");
+      }
     }
   };
 
@@ -67,13 +71,18 @@ function AddNotes() {
 
       <div>
         <button onClick={handleSave}>Save</button>
-        <button>Back</button>
       </div>
 
-      {newNote && (
+      {newNotes.length > 0 && (
         <div>
-          <h3>New Note Added:</h3>
-          <NoteBox note={newNote} /> 
+          <h3>New Notes Added:</h3>
+          <ul>
+            {newNotes.map((note) => (
+              <li key={note.id}>
+                <NoteBox note={note} />
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </>
